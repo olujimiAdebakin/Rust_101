@@ -37,6 +37,7 @@ fn main() {
     vary();
     scale();
     compound_types();
+    string();
 }
 
 // variables in rust
@@ -205,6 +206,7 @@ fn string(){
     // String
     let msg: String = String::from("Hello Rust");
     let len: usize = msg.len();
-    println!()
+    println!("msg: {msg}");
+    println!("len: {len}");
 
 }
