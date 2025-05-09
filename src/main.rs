@@ -7,6 +7,8 @@
 
 //      println!("The value of x is: {}", x);
 // }
+mod enumerator; 
+mod structure;
 
 use core::net;
 
@@ -190,12 +192,11 @@ fn compound_types() {
     println!("last 3 element: {:?}", s);
 
     // get all elements
-    let s  = &num[..];
+    let s = &num[..];
     println!("all elements: {:?} ", s);
 }
 
-
-fn string(){
+fn string() {
     // String = vector of u8 (Vec<u8>) valid UTF-8
     // &str = slice of u8 (str) valid UTF-8
 
@@ -208,5 +209,58 @@ fn string(){
     let len: usize = msg.len();
     println!("msg: {msg}");
     println!("len: {len}");
+
+    let mut msg = String::from("Hello");
+    msg.push_str(" Rust"); // ✅ This works!
+    println!("{}", msg); // Hello Rust
+
+    // str - string slice
+    // &str
+    // - usually used str with reference(borrowed)
+    // - immutable
+
+    let msg: String = String::from("Hello Rust");
+    let s: &str = &msg[0..5];
+    let len: usize = s.len();
+    println!("slice: {s}");
+    println!("len: {len}");
+
+    // declaring a variable with a string literal
+    // String literal
+    // slice pointing to a specific part of the binary
+    // immutable because hard-coded inside binary
+    // Deref coercion
+
+    let s: &str = "Hello";
+
+    let s: &str = "hi";
+    println!("{:?}", s);
+
+    let s: &str = r#"
+    {
+        "name": "John",
+        "age": 30,
+        "city": "New York",
+        "b": {"c": 3}
+    }
+    "#;
+    println!("{:#}", s);
+
+    // Deref coercion
+    // Deref coercion is Rust's way of converting a reference like &String into a &str (or other target types) automatically by calling deref() behind the scenes. This makes code cleaner and more intuitive.
+    let msg: String = String::from("Hello Rust");
+    let s: &str = &msg;
+    println!("{}", s);
+
+    // Add &str to String
+    let mut msg: String = "Hello".to_string();
+    msg += "!";
+    println!("{}", msg);
+
+    // sting interpolation
+    let lang = "Rust";
+    let emoji = "🦀";
+    let msg = format!("Hello {lang} {emoji}");
+    println!("{}", msg);
 
 }
