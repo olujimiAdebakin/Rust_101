@@ -9,6 +9,7 @@
 // }
 mod enumerator; 
 mod structure;
+mod operators;
 
 use core::net;
 
@@ -40,6 +41,8 @@ fn main() {
     scale();
     compound_types();
     string();
+    methods();
+    operates();
 }
 
 // variables in rust
@@ -263,4 +266,80 @@ fn string() {
     let msg = format!("Hello {lang} {emoji}");
     println!("{}", msg);
 
+}
+
+#[derive(Debug)]
+struct Point{
+    x: f32,
+    y: f32,
+}
+// Struct methods
+impl Point {
+   
+   // Associated function
+   // operates on the type itself and not on the instance    
+   fn zero() -> Self {
+       Self {x: 0.0,
+           y: 0.0}
+   }
+
+   // methods
+   // operates on the instance of a type and creates a new instance of the type
+
+   fn move_to (&mut self, x: f32, y: f32) {
+       self.x = x;
+       self.y = y;
+   }
+
+   fn distance_from_origin(&self) -> f32 {
+       (self.x.powi(2) + self.y.powi(2)).sqrt()
+   }
+
+
+}
+
+fn methods() {
+   let mut p = Point::zero();
+   println!("{:?}", p);
+   p.move_to(1.0, 2.0);
+   println!("{:?}", p);
+
+   let d = p.distance_from_origin();
+   println!("distance: {}", d);
+}
+
+
+fn operates() {
+    
+    let a: i32 = 1;
+    let b: i32 = 2;
+    let c: i32 = a * b;
+    println!("{}", c);
+
+    let a: f32 = 1.0;
+    let b: f32 = 2.0;
+    let c: f32 = a + b;
+    println!("{}", c);
+
+    // literals 
+    let a  = 1i32;
+    let b = 2u64;
+    let c = a + b as i32;
+
+    // Boolean
+    let a  = true && false;
+    let a  = true || false;
+    let a  = !true;
+
+    // Bitwise
+    // 101
+    let a:  u8 = 5;
+    // 011
+    let b: u8 = 3;
+    println!("a & b = {:03b}", a & b);
+    println!("a | b = {:03b}", a | b);
+    println!("a ^ b = {:03b}", a ^ b);
+    println!("!a = {:03b}", !a);
+    println!("1 << 3 = {:03b}", 1 << 3);
+    println!("10 >> 2 = {}", 10u32 >> 2);
 }
