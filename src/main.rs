@@ -10,6 +10,7 @@
 mod enumerator; 
 mod structure;
 mod operators;
+mod loops;
 
 use core::net;
 
@@ -43,6 +44,8 @@ fn main() {
     string();
     methods();
     operates();
+    elseif();
+    loops();
 }
 
 // variables in rust
@@ -342,4 +345,91 @@ fn operates() {
     println!("!a = {:03b}", !a);
     println!("1 << 3 = {:03b}", 1 << 3);
     println!("10 >> 2 = {}", 10u32 >> 2);
+}
+
+
+fn elseif(){
+    let a = 4;
+    if a > 0 {
+        println!("a is positive");
+    } else if a < 0 {
+        println!("a is negative");
+    } else {
+        println!("a is zero");
+    }
+
+    println!("a = {a}")
+}
+
+
+fn loops(){
+
+    // loop
+    // the loop keyword tells Rust to execute a block of code over and over again forever or until you explicitly tel it to stop.
+
+    let mut i = 0;
+    loop{
+        println!("loop");
+        if i == 10 {
+            break;
+        }
+        i += 2;
+    }
+
+    // while loop
+    // works only whn the condition is true
+    let mut i = 0;
+
+    while i <= 3 {
+        println!("while {i}");
+        i += 1; 
+    }
+
+    
+        let a = [10, 20, 30, 40, 50];
+        let mut index = 0;
+    
+        while index < 5 {
+            println!("the value is: {}", a[index]);
+    
+            index += 1;
+        }
+   
+    // for loop
+    for i in 0..= 4 {
+        println!("for loop {i}");
+    }
+
+    // for loop array
+    let a  = [10, 20, 30, 40, 50];
+    for i in a {
+        println!("for loop array {i}");
+    }
+
+    // usize and range
+    let n: usize = a.len();
+    for i in 0..n {
+        println!("for loop array {i}");
+    }
+
+    // for loop vector
+
+    let v = vec![10, 20, 30, 40, 50];
+    for i in v {
+        println!("for loop vector {i}");
+    }
+
+    let v = vec![10, 20, 30, 40, 50];
+
+      // iter 
+    // aloows multiple loops 
+    for i in v.iter(){
+        println!("for loop vector {i}");
+    }
+
+
+    for i in v.iter() {
+        println!("for loop vector {i}");
+    }
+
 }
